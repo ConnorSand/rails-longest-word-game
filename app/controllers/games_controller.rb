@@ -8,6 +8,7 @@ class GamesController < ApplicationController
   end
 
   def score
+
     response = URI.open("https://wagon-dictionary.herokuapp.com/#{params[:word]}").read
     json = JSON.parse(response)
     count = 0;
@@ -19,6 +20,11 @@ class GamesController < ApplicationController
 
     if json["found"] == true && count == params[:word].length
       @score = "Score: #{json["length"].to_s}"
+      if session[:score].nil?
+        session[:score] = params[:word].length
+      else
+        session[:score] += params[:word].length
+      end
     else
       @score = "This is not a valid word"
     end
