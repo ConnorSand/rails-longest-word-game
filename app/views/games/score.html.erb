@@ -1,0 +1,14 @@
+
+<div class="container">
+  <h1>Score Page</h1>
+
+  <h2>
+    Your letters were: <% params[:letters].split.each do |letter| %>
+      <span><%= letter %></span>
+    <% end %>
+  </h2>
+  <h2>You guessed <span><%= params[:word] %></span></h2>
+
+  <h2><%= @score %></h2>
+
+</div>
